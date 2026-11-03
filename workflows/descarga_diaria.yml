@@ -1,0 +1,33 @@
+name: Descarga Automática de Datos
+
+on:
+  workflow_dispatch: # Esto crea un botón para que lo ejecutes tú a mano cuando quieras
+  schedule:
+    - cron: '0 22 * * 1-5' # Se ejecutará solo de Lunes a Viernes a las 22:00 UTC
+
+jobs:
+  descargar:
+    runs-on: ubuntu-latest # El "ordenador virtual" que usará GitHub
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar librerías
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar el script de descarga
+        run: python downloader.py
+
+      - name: Guardar los datos en el repositorio
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/
+          git commit -m "Actualización automática de datos" || exit 0
+          git push
