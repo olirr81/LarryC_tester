@@ -1,26 +1,115 @@
-# Añadir al final de tu tickers.yaml actual
+# ============================================================
+# Universo de activos para estrategias Connors (RSI2 / Double 7s)
+# Fuente de datos: yfinance
+# ============================================================
 
+# --- Universo original de Larry Connors (los 20 de su libro) ---
+original_20:
+  - SPY    # SPDR S&P 500 ETF Trust
+  - QQQ    # Invesco QQQ Trust (Nasdaq 100)
+  - DIA    # SPDR Dow Jones Industrial Average ETF
+  - IWM    # iShares Russell 2000 ETF
+  - XLB    # Materials Select Sector SPDR
+  - XLE    # Energy Select Sector SPDR
+  - XLF    # Financial Select Sector SPDR
+  - XLI    # Industrial Select Sector SPDR
+  - XLV    # Health Care Select Sector SPDR
+  - EEM    # iShares MSCI Emerging Markets ETF
+  - EFA    # iShares MSCI EAFE ETF
+  - EWH    # iShares MSCI Hong Kong ETF
+  - EWJ    # iShares MSCI Japan ETF
+  - EWT    # iShares MSCI Taiwan ETF
+  - EWZ    # iShares MSCI Brazil ETF
+  - FXI    # iShares China Large-Cap ETF
+  - ILF    # iShares Latin America 40 ETF
+  - GLD    # SPDR Gold Shares
+  - IYR    # iShares U.S. Real Estate ETF
+  - XHB    # SPDR S&P Homebuilders ETF
+
+# --- Índices amplios de EE.UU. ---
+broad_indices:
+  - SPY    # S&P 500
+  - QQQ    # Nasdaq 100
+  - DIA    # Dow Jones
+  - IWM    # Russell 2000
+
+# --- Los 11 sectores SPDR (cobertura total del mercado USA) ---
+sector_spdr_full:
+  - XLK    # Technology
+  - XLF    # Financials
+  - XLE    # Energy
+  - XLV    # Health Care
+  - XLI    # Industrials
+  - XLY    # Consumer Discretionary
+  - XLP    # Consumer Staples
+  - XLB    # Materials
+  - XLU    # Utilities
+  - XLRE   # Real Estate
+  - XLC    # Communication Services
+
+# --- ETFs internacionales y regionales ---
+international:
+  - EEM    # Emerging Markets
+  - EFA    # Developed Markets (ex-USA)
+  - EWH    # Hong Kong
+  - EWJ    # Japan
+  - EWT    # Taiwan
+  - EWZ    # Brazil
+  - FXI    # China
+  - ILF    # Latin America 40
+  - EWG    # Germany
+  - EWU    # United Kingdom
+  - EWQ    # France
+  - EWA    # Australia
+  - EWY    # South Korea
+  - EWW    # Mexico
+  - EZA    # South Africa
+
+# --- Materias primas y Bonos ---
+commodities:
+  - GLD    # Gold
+  - SLV    # Silver
+  - USO    # Oil
+bonds:
+  - TLT    # 20+ Year Treasury
+  - IEF    # 7-10 Year Treasury
+  - LQD    # Investment Grade Corporate
+  - HYG    # High Yield Corporate
+
+# --- ETFs temáticos / específicos ---
+thematic_high_volume:
+  - XOP    # Oil & Gas Exploration
+  - XRT    # Retail
+  - KRE    # Regional Banking
+  - VNQ    # Real Estate
+  - MDY    # S&P MidCap 400
+  - VGK    # FTSE Europe
+  - FEZ    # Euro Stoxx 50
+
+# ============================================================
+# ACCIONES DE ALTA CAPITALIZACIÓN (S&P 500 y Europa)
+# ============================================================
 us_large_cap:
-  - NVDA    # NVIDIA
-  - AAPL    # Apple
-  - MSFT    # Microsoft
-  - GOOGL   # Alphabet
-  - AMZN    # Amazon
-  - META    # Meta
-  - AVGO    # Broadcom
-  - TSLA    # Tesla
-  - JPM     # JPMorgan
-  - V       # Visa
-  - MA      # Mastercard
-  - LLY     # Eli Lilly
-  - UNH     # UnitedHealth
-  - XOM     # Exxon Mobil
-  - CVX     # Chevron
-  - COST    # Costco
-  - WMT     # Walmart
-  - PG      # Procter & Gamble
-  - HD      # Home Depot
-  - DIS     # Disney
+  - NVDA   # NVIDIA
+  - AAPL   # Apple
+  - MSFT   # Microsoft
+  - GOOGL  # Alphabet
+  - AMZN   # Amazon
+  - META   # Meta
+  - AVGO   # Broadcom
+  - TSLA   # Tesla
+  - JPM    # JPMorgan
+  - V      # Visa
+  - MA     # Mastercard
+  - LLY    # Eli Lilly
+  - UNH    # UnitedHealth
+  - XOM    # Exxon Mobil
+  - CVX    # Chevron
+  - COST   # Costco
+  - WMT    # Walmart
+  - PG     # Procter & Gamble
+  - HD     # Home Depot
+  - DIS    # Disney
 
 europe_large_cap:
   # Alemania (.DE)
@@ -46,11 +135,58 @@ europe_large_cap:
   - ULVR.L  # Unilever
   - BATS.L  # British American Tobacco
 
-etf_extra:
-  - MDY     # S&P MidCap 400
-  - VGK     # FTSE Europe
-  - FEZ     # Euro Stoxx 50
-  - SLV     # Silver
-  - USO     # Oil
-  - HYG     # High Yield Bonds
-  - IEF     # 7-10 Year Treasury
+# ============================================================
+# 🌟 CARTERA ÉLITE (Ganadores del Backtest del S&P 500)
+# Las mejores acciones filtradas por Profit Factor y Trades
+# ============================================================
+connors_elite:
+  # --- Top RSI2 (Reversión fuerte a corto plazo) ---
+  - FLEX   # Flex Ltd (PF 4.17)
+  - HIG    # The Hartford (PF 3.80)
+  - JCI    # Johnson Controls (PF 3.51)
+  - TRGP   # Targa Resources (PF 3.48)
+  - ULTA   # Ulta Beauty (PF 3.29)
+  - NDAQ   # Nasdaq Inc (PF 3.24)
+  - SYK    # Stryker (PF 3.19)
+  - GM     # General Motors (PF 3.13)
+  - FIS    # Fidelity National Info (PF 3.12)
+  - OTIS   # Otis Worldwide (PF 8.33) - *Ojo, pocos trades históricos*
+  
+  # --- Top Double 7 (Swing trading / Tendencia) ---
+  - V      # Visa (PF 2.29 - El Rey del D7)
+  - FFIV   # F5 Inc (PF 2.17)
+  - GILD   # Gilead Sciences (PF 2.13)
+  - MNST   # Monster Beverage (PF 2.09)
+  - FIX    # Comfort Systems (PF 2.09)
+  - AMD    # Advanced Micro Devices (PF 2.06)
+  - NOW    # ServiceNow (PF 2.05)
+  - GL     # Globe Life (PF 2.05)
+  - TYL    # Tyler Technologies (PF 2.03)
+  - DELL   # Dell Technologies (PF 2.03)
+  
+  # --- Los Mejores Europeos ---
+  - SU.PA  # Schneider Electric (RSI2 PF 2.81 / D7 PF 1.79)
+  - AIR.PA # Airbus (RSI2 PF 2.25 / D7 PF 1.57)
+  - ASML.AS # ASML (RSI2 PF 1.40 / D7 PF 1.77)
+
+# ============================================================
+# Índices y Futuros (Contexto, no operables directamente con CSVs)
+# ============================================================
+indices:
+  - "^GSPC"      # S&P 500
+  - "^NDX"       # Nasdaq 100
+  - "^DJI"       # Dow Jones
+  - "^RUT"       # Russell 2000
+  - "^SOX"       # Semiconductores
+  - "^STOXX50E"  # Euro Stoxx 50
+  - "^GDAXI"     # DAX 40
+  - "^FCHI"      # CAC 40
+  - "^FTSE"      # FTSE 100
+
+futures:
+  - ES=F   # E-mini S&P 500
+  - NQ=F   # E-mini Nasdaq 100
+  - YM=F   # E-mini Dow Jones
+  - RTY=F  # E-mini Russell 2000
+  - FDAX=F # DAX Futures
+  - FESX=F # Euro Stoxx 50 Futures
