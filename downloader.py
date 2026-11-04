@@ -6,9 +6,18 @@ from datetime import datetime
 
 def cargar_tickers(ruta_yaml="config/tickers.yaml"):
     """Lee el archivo YAML y devuelve un diccionario con las categorías."""
+    # Red de seguridad: si no está en config/, buscar en la raíz
+    if not os.path.exists(ruta_yaml) and os.path.exists("tickers.yaml"):
+        print("⚠️ No se encontró 'config/tickers.yaml'. Usando 'tickers.yaml' de la raíz.")
+        ruta_yaml = "tickers.yaml"
+
     if not os.path.exists(ruta_yaml):
-        raise FileNotFoundError(f"No se encuentra el archivo {ruta_yaml}. Verifica la ruta.")
-    
+        print("❌ ERROR CRÍTICO: No se encuentra el archivo de tickers.")
+        print(f"Archivos en la raíz del repo: {os.listdir('.')}")
+        if os.path.exists("config"):
+            print(f"Archivos DENTRO de config: {os.listdir('config')}")
+        raise FileNotFoundError(f"No se encuentra el archivo {ruta_yaml}.")
+
     with open(ruta_yaml, "r", encoding="utf-8") as file:
         return yaml.safe_load(file)
 
@@ -37,10 +46,14 @@ def main():
     os.makedirs("data", exist_ok=True)
     
     # 2. Cargar configuración
-    universo = cargar_tickers()
-    
-    # 3. Elegir qué categoría descargar (puedes cambiar esto luego)
-    categoria = "original_20" # Empezamos con el universo original de Connors
+    try:
+        universo = cargar_tickers()
+    except Exception as e:
+        print(f"Fallo al cargar la configuración: {e}")
+        return # Detenemos el script si no hay tickers
+
+    # 3. Elegir qué categoría descargar (puedes cambiar "original_20" por otra)
+    categoria = "original_20" 
     tickers_a_descargar = universo.get(categoria, [])
     
     print(f"--- Iniciando descarga de la categoría: {categoria} ---")
@@ -52,7 +65,6 @@ def main():
         
         if df is not None:
             # Guardar como CSV dentro de la carpeta data/
-            # Reemplazamos ^ y = para que los nombres de archivo sean válidos
             nombre_archivo = ticker.replace("^", "").replace("=", "_") + ".csv"
             ruta_guardado = os.path.join("data", nombre_archivo)
             
