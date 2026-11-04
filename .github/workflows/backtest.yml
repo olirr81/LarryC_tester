@@ -19,15 +19,18 @@ jobs:
           python-version: '3.10'
 
       - name: Instalar librerías
-        run: pip install pandas
+        run: pip install -r requirements.txt
 
-      - name: Ejecutar el script de estrategias
+      - name: Ejecutar el script de estrategias (KPIs por activo)
         run: python strategies.py
+
+      - name: Ejecutar el Backtest de la Cartera Combinada
+        run: python portfolio_backtest.py
 
       - name: Guardar los resultados en el repositorio
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -f results/
-          git commit -m "Actualización automática de resultados" || exit 0
+          git commit -m "Actualización de KPIs y Cartera Combinada" || exit 0
           git push
