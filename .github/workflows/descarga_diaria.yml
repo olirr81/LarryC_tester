@@ -8,6 +8,8 @@ on:
 jobs:
   descargar:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # <-- Permiso crucial para que pueda subir los datos
 
     steps:
       - name: Clonar el repositorio
