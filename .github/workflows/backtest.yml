@@ -1,0 +1,33 @@
+name: Calcular Estrategias
+
+on:
+  workflow_dispatch: # Botón manual
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar librerías
+        run: pip install pandas
+
+      - name: Ejecutar el script de estrategias
+        run: python strategies.py
+
+      - name: Guardar los resultados en el repositorio
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -f results/
+          git commit -m "Actualización automática de resultados" || exit 0
+          git push
