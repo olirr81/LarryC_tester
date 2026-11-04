@@ -1,13 +1,13 @@
 name: Descarga Automática de Datos
 
 on:
-  workflow_dispatch: # Esto crea un botón para que lo ejecutes tú a mano cuando quieras
+  workflow_dispatch: # Botón para ejecutarlo a mano
   schedule:
-    - cron: '0 22 * * 1-5' # Se ejecutará solo de Lunes a Viernes a las 22:00 UTC
+    - cron: '0 22 * * 1-5' # Se ejecuta de Lunes a Viernes a las 22:00 UTC
 
 jobs:
   descargar:
-    runs-on: ubuntu-latest # El "ordenador virtual" que usará GitHub
+    runs-on: ubuntu-latest
 
     steps:
       - name: Clonar el repositorio
@@ -28,6 +28,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/
+          git add -f data/
           git commit -m "Actualización automática de datos" || exit 0
           git push
